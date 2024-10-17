@@ -1,5 +1,5 @@
+using Player;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MovingEnemy : BaseEnemy
 {
@@ -9,9 +9,11 @@ public class MovingEnemy : BaseEnemy
 
     [SerializeField]
     private bool leftRightMovement;
+    private Transform _player;
 
     private void Start()
     {
+        _player = GameObject.FindWithTag("Player").transform;
         if (Random.Range(0, 2) == 0 && !leftRightMovement) // chooses between going left or right
         {
             speed *= -1;
@@ -28,15 +30,12 @@ public class MovingEnemy : BaseEnemy
     }
 
     // left or right movement
-    private void MovementType1()
-    {
-        transform.position += Vector3.right * (Time.deltaTime * speed);
-    }
+    private void MovementType1() => transform.position += Vector3.right * (Time.deltaTime * speed);
 
     private void MovementType2()
     {
         //rotates towards the player
-        Vector2 player = PlayerMovement.Instance.transform.position;
+        Vector2 player = _player.position;
         var direction = player - (Vector2)transform.position;
 
         var angle = Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg;
@@ -47,7 +46,5 @@ public class MovingEnemy : BaseEnemy
             Time.deltaTime * rotationSpeed
         );
         transform.position += transform.up * (Time.deltaTime * speed);
-
-        // transform.SetPositionAndRotation(movement, transform.rotation);
     }
 }

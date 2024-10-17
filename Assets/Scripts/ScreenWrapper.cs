@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ScreenWrapper : MonoBehaviour
 {
-    private float _screenLeft;
-    private float _screenRight;
+    private float _screenLeft,
+        _screenRight;
 
     [SerializeField]
     private float leftOffset,
