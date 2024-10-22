@@ -21,12 +21,16 @@ namespace Player
         [SerializeField]
         private Transform fireTransform;
         public bool canShoot = true;
+        public bool specialAtkReady;
 
         private void Start()
         {
             Player.Instance.PlayerControls.Player.Shoot.performed += _ => _isShooting = true;
             Player.Instance.PlayerControls.Player.Shoot.canceled += _ => _isShooting = false;
+            Player.Instance.PlayerControls.Player.Specialattack.performed += _ => SpecialAttack();
             StartCoroutine(ShootLoop());
+            specialAtkReady = true;
+            UiManager.Instance.specialAtkReady = true;
         }
 
         private IEnumerator ShootLoop()
@@ -57,11 +61,15 @@ namespace Player
 
         private void SpecialAttack() // kills all enemies on screen
         {
+            if (!specialAtkReady)
+                return;
             var parent = GameObject.Find("WaveParent");
             for (var i = 0; i < parent.transform.childCount; i++)
             {
                 parent.transform.GetChild(i).GetComponent<BaseEnemy>().Die();
             }
+            specialAtkReady = false;
+            UiManager.Instance.specialAtkReady = false;
         }
     }
 }

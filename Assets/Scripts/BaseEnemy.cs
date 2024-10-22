@@ -38,6 +38,8 @@ public class BaseEnemy : MonoBehaviour
         var startPos = transform.position;
         while (t < 1)
         {
+            if (!this)
+                yield break;
             t += Time.deltaTime / enemy.timeToStart;
             transform.position = Vector2.Lerp(startPos, enemy.moveTowards, t);
             yield return null;

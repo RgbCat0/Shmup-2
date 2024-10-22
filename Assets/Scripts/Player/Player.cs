@@ -9,16 +9,6 @@ namespace Player
 
         [SerializeField]
         private int health = 3;
-        public int Health
-        {
-            get => health;
-            set
-            {
-                health = value;
-                if (health <= 0)
-                    GameManager.Instance.GameOver();
-            }
-        }
 
         private void Awake()
         {
@@ -33,6 +23,13 @@ namespace Player
                 Instance = this;
             else
                 Destroy(gameObject);
+        }
+
+        public void TakeDamage(int damage)
+        {
+            health -= damage;
+            if (health <= 0)
+                GameManager.Instance.GameOver();
         }
     }
 }
