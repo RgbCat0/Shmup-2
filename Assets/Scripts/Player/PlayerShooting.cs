@@ -19,7 +19,7 @@ namespace Player
         private float fireRate = 0.5f;
 
         [SerializeField]
-        public Vector2 spawnOffset;
+        private Transform fireTransform;
         public bool canShoot = true;
 
         private void Start()
@@ -35,11 +35,32 @@ namespace Player
             {
                 if (_isShooting && canShoot)
                 {
-                    if (bulletPrefab) // for testing purposes
-                        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                    if (bulletPrefab)
+                        Shoot();
                     yield return new WaitForSeconds(fireRate);
                 }
                 yield return null;
+            }
+        }
+
+        private void Shoot() // added for player upgrades to shoot multiple bullets
+        {
+            for (var i = 0; i < fireTransform.childCount; i++)
+            {
+                Instantiate(
+                    bulletPrefab,
+                    fireTransform.GetChild(i).position,
+                    fireTransform.GetChild(i).rotation
+                );
+            }
+        }
+
+        private void SpecialAttack() // kills all enemies on screen
+        {
+            var parent = GameObject.Find("WaveParent");
+            for (var i = 0; i < parent.transform.childCount; i++)
+            {
+                parent.transform.GetChild(i).GetComponent<BaseEnemy>().Die();
             }
         }
     }

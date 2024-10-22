@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameState gameState;
+    public int score;
 
     private void Awake()
     {
@@ -44,6 +45,18 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.InGame;
         SceneManager.LoadScene("Main");
+    }
+    #endregion
+    #region InGame
+    public void GameOver()
+    {
+        gameState = GameState.GameOver;
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
     }
     #endregion
 }

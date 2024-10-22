@@ -3,19 +3,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private bool _setup;
-
     [SerializeField]
     private float speed = 10f;
 
     [SerializeField]
     private float destroyTime;
 
-    // private void Setup(float eulerAngleZ)
-    // {
-    //     transform.rotation = Quaternion.Euler(0, 0, eulerAngleZ);
-    //     _setup = true;
-    // }
     private void Start()
     {
         if (destroyTime == 0)
