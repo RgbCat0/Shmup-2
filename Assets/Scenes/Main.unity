@@ -653,20 +653,22 @@ MonoBehaviour:
   - name: Wave 0
     enemyGroups:
     - name: Group 0
-      timeUntilNextGroup: 2
+      timeUntilNextGroup: 10
       enemies:
       - spawnPosition: {x: 6, y: 7}
         moveTowards: {x: 6, y: 3}
         enemyType: 0
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 1
       - spawnPosition: {x: -6, y: 7}
         moveTowards: {x: -6, y: 3}
         enemyType: 1
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
     - name: Group 1
       timeUntilNextGroup: 10
       enemies:
@@ -675,13 +677,15 @@ MonoBehaviour:
         enemyType: 0
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
       - spawnPosition: {x: -6, y: 7}
         moveTowards: {x: -6, y: 3.5}
         enemyType: 1
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
     - name: Group 2
       timeUntilNextGroup: 10
       enemies:
@@ -690,7 +694,8 @@ MonoBehaviour:
         enemyType: 0
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
   - name: Wave 1
     enemyGroups:
     - name: Group 0
@@ -701,13 +706,15 @@ MonoBehaviour:
         enemyType: 0
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
       - spawnPosition: {x: -6, y: 7}
         moveTowards: {x: -6, y: 3}
         enemyType: 1
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
     - name: Group 1
       timeUntilNextGroup: 10
       enemies:
@@ -716,13 +723,15 @@ MonoBehaviour:
         enemyType: 0
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
       - spawnPosition: {x: -6, y: 7}
         moveTowards: {x: -6, y: 3.5}
         enemyType: 1
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
     - name: Group 1
       timeUntilNextGroup: 10
       enemies:
@@ -731,10 +740,11 @@ MonoBehaviour:
         enemyType: 0
         timeToStart: 2
         hitPoints: 1
-        powerUpChance: 0
+        goldDropChance: 0
+        toPlayer: 0
   waveParent: {fileID: 1109254680}
   movingEnemyPrefab: {fileID: 1045354196754276457, guid: 2fa6c785fdad24747a66154539ac0b23, type: 3}
-  shootingEnemyPrefab: {fileID: 0}
+  shootingEnemyPrefab: {fileID: 1213379668199603670, guid: d39c10bd06dd2ba46b1009782cf19e78, type: 3}
 --- !u!4 &1451992565
 Transform:
   m_ObjectHideFlags: 0
@@ -815,6 +825,7 @@ MonoBehaviour:
   animationTime: 0
   startPos: {x: 0, y: 0}
   endPos: {x: 0, y: 0}
+  isExploding: 0
 --- !u!95 &1755191411
 Animator:
   serializedVersion: 5

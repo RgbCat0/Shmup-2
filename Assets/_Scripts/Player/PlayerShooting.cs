@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace _Scripts.Player
 {
     public class PlayerShooting : MonoBehaviour
     {
@@ -63,11 +63,7 @@ namespace Player
         {
             if (!specialAtkReady)
                 return;
-            var parent = GameObject.Find("WaveParent");
-            for (var i = 0; i < parent.transform.childCount; i++)
-            {
-                parent.transform.GetChild(i).GetComponent<BaseEnemy>().Die();
-            }
+            // get bomb here
             specialAtkReady = false;
             UiManager.Instance.specialAtkReady = false;
         }
