@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _Scripts.Player
+namespace _Scripts.PlayerSpace
 {
     public class PlayerShooting : MonoBehaviour
     {
@@ -61,6 +61,7 @@ namespace _Scripts.Player
 
         private void SpecialAttack() // kills all enemies on screen
         {
+            return; // special attack is broken
             if (!specialAtkReady)
                 return;
             // get bomb here

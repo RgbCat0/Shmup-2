@@ -51,12 +51,13 @@ namespace _Scripts
         public void GameOver()
         {
             gameState = GameState.GameOver;
-            SceneManager.LoadScene("GameOver");
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void AddScore(int amount)
         {
             score += amount;
+            UiManager.Instance.ScoreCounter(score);
         }
         #endregion
     }

@@ -1,5 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace _Scripts
 {
@@ -7,8 +10,21 @@ namespace _Scripts
     {
         public static UiManager Instance;
 
+        [SerializeField]
+        private InputAction pause;
+        private bool _isPaused;
+
         public bool specialAtkReady;
-        public GameObject specialAtkObj;
+
+        [SerializeField]
+        private GameObject specialAtkObj,
+            pauseGameObject;
+
+        [SerializeField]
+        private TextMeshProUGUI scoreText;
+
+        [SerializeField]
+        private List<GameObject> lives;
 
         private void Awake()
         {
@@ -20,6 +36,8 @@ namespace _Scripts
 
         private void Start()
         {
+            pause = PlayerSpace.Player.Instance.PlayerControls.Player.pause;
+            pause.performed += _ => PauseGame();
             StartCoroutine(SpecialAtk());
         }
 
@@ -40,6 +58,33 @@ namespace _Scripts
                     yield return new WaitForSeconds(1f);
                 }
             }
+        }
+
+        public void ScoreCounter(int score)
+        {
+            scoreText.text = score.ToString();
+        }
+
+        public void UpdateLives(int _lives)
+        {
+            for (var i = 0; i < lives.Count; i++)
+            {
+                lives[i].SetActive(i < _lives);
+            }
+        }
+
+        private void PauseGame()
+        {
+            if (!_isPaused)
+            {
+                pauseGameObject.SetActive(true);
+                Time.timeScale = 0;
+                _isPaused = true;
+                return;
+            }
+            pauseGameObject.SetActive(false);
+            Time.timeScale = 1;
+            _isPaused = false;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using _Scripts.PlayerSpace;
 
 namespace _Scripts
 {
@@ -30,16 +31,14 @@ namespace _Scripts
         {
             if (CompareTag("PlayerBullet") && other.CompareTag("Enemy"))
             {
-                print("player bullet hit enemy");
                 other.GetComponent<BaseEnemy>().TakeDamage(1);
-
                 Destroy(gameObject);
             }
             else if (CompareTag("EnemyBullet") && other.CompareTag("Player"))
             {
-                // other.GetComponent<Player>().TakeDamage(1);
+                other.GetComponent<Player>().TakeDamage(1);
                 Destroy(gameObject);
-                throw new NotImplementedException("Player TakeDamage method not implemented");
+                // throw new NotImplementedException("Player TakeDamage method not implemented");
             }
         }
     }

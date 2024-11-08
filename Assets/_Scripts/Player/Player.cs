@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.Player
+namespace _Scripts.PlayerSpace
 {
     public class Player : MonoBehaviour
     {
@@ -8,7 +8,7 @@ namespace _Scripts.Player
         public PlayerControls PlayerControls;
 
         [SerializeField]
-        private int health = 3;
+        private int health = 3; // max lives = 5
 
         private void Awake()
         {
@@ -28,6 +28,7 @@ namespace _Scripts.Player
         public void TakeDamage(int damage)
         {
             health -= damage;
+            UiManager.Instance.UpdateLives(health);
             if (health <= 0)
                 GameManager.Instance.GameOver();
         }

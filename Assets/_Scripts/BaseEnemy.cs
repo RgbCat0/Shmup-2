@@ -12,7 +12,12 @@ namespace _Scripts
         private protected float speed;
         public bool enemyBehavior;
         private int _powerUpChance;
+
+        [SerializeField]
         private protected bool ToPlayer;
+
+        [SerializeField]
+        private int scoreToGive;
 
         public void TakeDamage(int damage)
         {
@@ -29,6 +34,7 @@ namespace _Scripts
             {
                 // spawn powerup
             }
+            GameManager.Instance.AddScore(scoreToGive);
             Destroy(gameObject);
         }
 

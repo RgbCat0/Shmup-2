@@ -57,7 +57,7 @@ namespace _Scripts
                 SpawnEnemy(enemy);
         }
 
-        private void SpawnEnemy(Enemy enemy) // why didn't i use this earlier?
+        private void SpawnEnemy(Enemy enemy)
         {
             var newEnemy = Instantiate(
                     enemy.enemyType == EnemyType.MovingEnemy

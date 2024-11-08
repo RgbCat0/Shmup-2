@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.Player
+namespace _Scripts.PlayerSpace
 {
     public class PowerUpBehavior : MonoBehaviour
     {

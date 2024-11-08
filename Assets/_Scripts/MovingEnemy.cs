@@ -11,6 +11,8 @@ namespace _Scripts
         private float returnHeight;
 
         private Transform _player;
+
+        [SerializeField]
         private bool _returnToStart;
 
         private void Start()
@@ -46,7 +48,7 @@ namespace _Scripts
             Vector2 player = _player.position;
             var direction = player - (Vector2)transform.position;
 
-            if (player.y + 0.2f < transform.position.y)
+            if (transform.position.y < player.y)
                 _returnToStart = true;
             if (transform.position.y > returnHeight)
                 _returnToStart = false;
@@ -67,7 +69,7 @@ namespace _Scripts
         {
             if (other.CompareTag("Player"))
             {
-                other.GetComponent<Player.Player>().TakeDamage(1);
+                other.GetComponent<PlayerSpace.Player>().TakeDamage(1);
                 Destroy(gameObject);
             }
         }
